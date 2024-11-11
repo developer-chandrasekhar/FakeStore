@@ -1,5 +1,5 @@
 //
-//  ProductsRepository.swift
+//  ProductRepository.swift
 //  FakeStore
 //
 //  Created by chandra sekhar p on 11/11/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ProductsRepository {
-    func getProducts() async throws -> [Product]
+public protocol ProductRepository {
+    func getProducts(limit: Int) async throws -> [Product]
     func getProductById(_ id: Int) async throws -> Product?
 }

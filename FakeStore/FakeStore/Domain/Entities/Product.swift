@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Product: Identifiable {
+public struct Product: Identifiable {
     
-    let id: Int
-    let title: String
-    let price: Double
-    let description: String?
-    let category: String?
-    let image: String?
-    let rating: Double?
+    public let id: Int
+    public let title: String
+    public let price: Double
+    public let description: String?
+    public let category: String?
+    public let image: String?
+    public let rating: Double?
 }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol APICoordinatorService {
+public protocol APICoordinatorService {
     func connectServerWithEndPoint<T: Codable>(endPoint: EndPoint,
                                                client: APIClient,
                                                request: ApiRequest,

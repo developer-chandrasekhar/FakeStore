@@ -1,5 +1,5 @@
 //
-//  ProductsWebRepository.swift
+//  ProductWebRepository.swift
 //  FakeStore
 //
 //  Created by chandra sekhar p on 11/11/24.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-final class ProductsWebRepository: ProductsRepository {
-    func getProducts() async throws -> [Product] {
+final class ProductWebRepository: ProductRepository {
+    func getProducts(limit: Int) async throws -> [Product] {
         return []
     }
     
