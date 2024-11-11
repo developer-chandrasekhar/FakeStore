@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B041065D2CE24B3D0022BA94 /* NetworkPackageManager in Frameworks */ = {isa = PBXBuildFile; productRef = B041065C2CE24B3D0022BA94 /* NetworkPackageManager */; };
+		B04106602CE24B550022BA94 /* NetworkPackageManager in Frameworks */ = {isa = PBXBuildFile; productRef = B041065F2CE24B550022BA94 /* NetworkPackageManager */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B09C82602CE12981001FB54C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B04106602CE24B550022BA94 /* NetworkPackageManager in Frameworks */,
+				B041065D2CE24B3D0022BA94 /* NetworkPackageManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = FakeStore;
 			packageProductDependencies = (
+				B041065C2CE24B3D0022BA94 /* NetworkPackageManager */,
+				B041065F2CE24B550022BA94 /* NetworkPackageManager */,
 			);
 			productName = FakeStore;
 			productReference = B09C824F2CE1297F001FB54C /* FakeStore.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = B09C82462CE1297F001FB54C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B041065E2CE24B550022BA94 /* XCLocalSwiftPackageReference "NetworkPackageManager" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B09C82502CE1297F001FB54C /* Products */;
 			projectDirPath = "";
@@ -404,6 +416,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -433,6 +446,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,6 +572,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B041065E2CE24B550022BA94 /* XCLocalSwiftPackageReference "NetworkPackageManager" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = NetworkPackageManager;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B041065C2CE24B3D0022BA94 /* NetworkPackageManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkPackageManager;
+		};
+		B041065F2CE24B550022BA94 /* NetworkPackageManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkPackageManager;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B09C82472CE1297F001FB54C /* Project object */;
 }

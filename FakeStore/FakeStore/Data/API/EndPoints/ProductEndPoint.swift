@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkPackageManager
 
 public enum ProductsEndPoint: EndPoint {
     case productsList(limit: Int)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import NetworkPackageManager
 
 public protocol APICoordinatorService {
     func connectServerWithEndPoint<T: Codable>(endPoint: EndPoint,

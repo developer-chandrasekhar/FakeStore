@@ -12,6 +12,9 @@ public protocol ResponseParser {
 }
 
 public final class GenericResponseParser: ResponseParser {
+    
+    public init() {}
+    
     public func parseResponse<T: Codable>(data: Data) throws -> T {
         do {
             let models = try JSONDecoder().decode(T.self, from: data)

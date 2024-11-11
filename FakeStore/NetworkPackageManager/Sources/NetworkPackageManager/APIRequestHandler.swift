@@ -32,6 +32,9 @@ extension ApiRequest {
 }
 
 public final class ApiGetRequest: ApiRequest {
+    
+    public init() {}
+    
     public func prepareRequest<T: EndPoint>(endPoint: T) throws -> URLRequest {
         do{
             printRequest(url: endPoint.urlString, data: nil)
@@ -46,7 +49,7 @@ public final class ApiPostRequest: ApiRequest {
     
     let payload: Encodable
     
-    init(payload: Encodable) {
+    public init(payload: Encodable) {
         self.payload = payload
     }
     
