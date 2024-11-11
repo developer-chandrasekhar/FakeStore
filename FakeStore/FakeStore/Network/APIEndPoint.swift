@@ -11,11 +11,12 @@ public protocol EndPoint {
     var urlString: String { get }
     var httpMethod: HTTPMethod { get }
     var headers: [String: String] { get }
+    var queryParams: [URLQueryItem]? { get }
 }
 
 extension EndPoint {
     
-    var headers: [String: String] {
+    public var headers: [String: String] {
         return defaultHeaders
     }
     

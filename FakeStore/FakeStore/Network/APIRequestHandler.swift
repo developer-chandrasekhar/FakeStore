@@ -16,8 +16,11 @@ public protocol ApiRequest {
 extension ApiRequest {
     fileprivate func prepareBaseRequest<T: EndPoint>(endPoint: T) throws -> URLRequest {
         guard let escapedUrlString = endPoint.urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
-              let url = URL(string: escapedUrlString) else {
+              var url = URL(string: escapedUrlString) else {
             throw ApiError.badUrl(url: endPoint.urlString)
+        }
+        if let params = endPoint.queryParams {
+            url = url.appending(queryItems: params)
         }
         var request = URLRequest(url: url)
         request.httpMethod = endPoint.httpMethod.method
@@ -65,6 +68,7 @@ public final class ApiPostRequest: ApiRequest {
 }
 
 extension ApiRequest {
+    #if DEBUG
     fileprivate func printRequest(url: String, data: Data?) {
         print("-------------- REQUEST START -----------------")
         print("-------------- URL -----------------")
@@ -76,4 +80,5 @@ extension ApiRequest {
         }
         print("-------------- REQUEST END --------------------")
     }
+    #endif
 }

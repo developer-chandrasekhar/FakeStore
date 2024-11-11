@@ -19,6 +19,20 @@ public final class FetchProductsListUseCase: ProductsListUseCase {
     }
     
     public func getProducts(limit: Int) async throws -> [Product] {
-        try await productRepository.getProducts(limit: limit)
+        do {
+            let data: [ProductDTO] = try await productRepository.getProducts(limit: limit)
+            let products: [Product] = data.map {
+                Product(id: $0.id,
+                        title: $0.title,
+                        price: $0.price,
+                        description: $0.description,
+                        category: $0.category,
+                        image: $0.image,
+                        rating: $0.rating?.rate)
+            }
+            return products
+        } catch {
+            throw error
+        }
     }
 }

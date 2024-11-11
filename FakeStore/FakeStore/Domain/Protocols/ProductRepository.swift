@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol ProductRepository {
-    func getProducts(limit: Int) async throws -> [Product]
-    func getProductById(_ id: Int) async throws -> Product?
+    func getProducts(limit: Int) async throws -> [ProductDTO]
+    func getProductById(_ id: Int) async throws -> ProductDTO?
 }
