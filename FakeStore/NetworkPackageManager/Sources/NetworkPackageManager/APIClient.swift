@@ -10,6 +10,10 @@ import Foundation
 public typealias APIResult = (data: Data, response: HTTPURLResponse)
 
 public protocol APIClient {
-    func connect(for request: URLRequest) async throws -> APIResult
+    func connect(for request: URLRequest, validator: HttpResponseValidatable) async throws -> APIResult
+}
+
+public protocol HttpResponseValidatable {
+    func validate(response: URLResponse) throws -> HTTPURLResponse
 }
 

@@ -37,7 +37,6 @@ public final class ApiGetRequest: ApiRequest {
     
     public func prepareRequest<T: EndPoint>(endPoint: T) throws -> URLRequest {
         do{
-            printRequest(url: endPoint.urlString, data: nil)
             return try self.prepareBaseRequest(endPoint: endPoint)
         } catch(let error) {
             throw error
@@ -58,30 +57,10 @@ public final class ApiPostRequest: ApiRequest {
             var request = try self.prepareBaseRequest(endPoint: endPoint)
             let encodedPayload = try JSONEncoder().encode(payload)
             request.httpBody = encodedPayload
-            printRequest(url: endPoint.urlString, data: encodedPayload)
             return request
         }
-        catch(let error as ApiError) {
+        catch {
             throw error
         }
-        catch( _ as EncodingError) {
-            throw ApiError.encodingError
-        }
     }
-}
-
-extension ApiRequest {
-    #if DEBUG
-    fileprivate func printRequest(url: String, data: Data?) {
-        print("-------------- REQUEST START -----------------")
-        print("-------------- URL -----------------")
-        print(url)
-        if let data {
-            let prettyPrintedString = String(data: data, encoding: .utf8)!
-            print("-------------- PAYLOAD -----------------")
-            print(prettyPrintedString)
-        }
-        print("-------------- REQUEST END --------------------")
-    }
-    #endif
 }

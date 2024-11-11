@@ -20,7 +20,7 @@ extension APICoordinatorService {
                                                client: APIClient = URLSession.shared,
                                                request: ApiRequest = ApiGetRequest(),
                                                responseParser: GenericResponseParser = GenericResponseParser()) async throws -> T {
-        let apiResponse = try await client.connect(for: request.prepareRequest(endPoint: endPoint))
+        let apiResponse = try await client.connect(for: request.prepareRequest(endPoint: endPoint), validator: HttpResponseValidator())
         return try responseParser.parseResponse(data: apiResponse.data)
     }
 }

@@ -11,8 +11,9 @@ enum ApiError: Error {
     case badUrl(url: String)
     case noNetwork
     case encodingError
-    case invalidResponse(response: String)
+    case invalidResponse(url: String?)
     case unableToDecode(reason: String)
     case unknownError(reason: String)
+    case serverNotAvailable
 }
 

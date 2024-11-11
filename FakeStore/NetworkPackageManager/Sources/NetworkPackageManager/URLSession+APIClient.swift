@@ -7,17 +7,32 @@
 
 import Foundation
 
+
 extension URLSession: APIClient {
-   public func connect(for request: URLRequest) async throws -> APIResult {
-        do {
-            let result: (data: Data, response: URLResponse) = try await self.data(for: request)
-            guard let httpResponse = result.response as? HTTPURLResponse else {
-                throw ApiError.invalidResponse(response: result.response.url?.absoluteString ?? "")
-            }
-            return (result.data, httpResponse)
-        } catch {
-            print(error)
-            throw ApiError.invalidResponse(response: request.url?.absoluteString ?? "")
+   public func connect(for request: URLRequest, validator: HttpResponseValidatable) async throws -> APIResult {
+       do {
+           let response: (Data, URLResponse) = try await self.data(for: request)
+           do {
+               let httpResponse = try validator.validate(response: response.1)
+               return (response.0, httpResponse)
+           } catch {
+               throw error
+           }
+       } catch {
+           if error as? ApiError != nil { throw error }
+           else {
+               throw ApiError.invalidResponse(url: request.url?.absoluteString)
+           }
+       }
+    }
+}
+
+public final class HttpResponseValidator: HttpResponseValidatable {
+    public init() {}
+    public func validate(response: URLResponse) throws -> HTTPURLResponse {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw ApiError.invalidResponse(url: response.url?.absoluteString)
         }
+        return httpResponse
     }
 }
