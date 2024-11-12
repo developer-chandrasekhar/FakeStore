@@ -10,6 +10,8 @@ import SwiftUI
 public enum LocalizedStrings: String {
     case productsListTitle = "ProductsListTitle"
     case noProductsAvailable = "EmptyProducts"
+    case noNetwork = "NoNetwork"
+    case somethingWentWrong = "SomethingWentWrong"
     
     var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")
