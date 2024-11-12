@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  FakeStore
+
+  Created by chandra sekhar p on 12/11/24.
+  
+*/
+
+
+"ProductsListTitle" = "Products List";
+"EmptyProducts" = "No Products Available";
