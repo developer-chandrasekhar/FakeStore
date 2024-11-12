@@ -19,17 +19,26 @@ struct ProductsListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack(alignment: .leading) {
-                if viewModel.viewState == .empty {
-                    FakeStoreEmptyView(description: LocalizedStrings.noProductsAvailable.localized)
-                }
-                else if viewModel.products.count > 0 {
-                    layoutProducts(products: viewModel.products)
-                    
+        VStack(alignment: .leading) {
+            if viewModel.viewState == .loading {
+                VStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
                 }
             }
-            .navigationTitle(LocalizedStrings.productsListTitle.localized)
+            else if viewModel.viewState == .empty {
+                FakeStoreEmptyView(description: LocalizedStrings.noProductsAvailable.localized)
+            }
+            else if viewModel.viewState == .error {
+                FakeStoreEmptyView(description: viewModel.errorMessage)
+            }
+            else if viewModel.products.count > 0 {
+                NavigationView {
+                    layoutProducts(products: viewModel.products)
+                        .navigationTitle(LocalizedStrings.productsListTitle.localized)
+                }
+            }
         }
         .onAppear {
             viewModel.getProducts()
@@ -53,5 +62,3 @@ extension ProductsListView {
 #Preview {
     ProductsListView()
 }
-
-
