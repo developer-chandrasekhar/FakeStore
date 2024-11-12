@@ -12,8 +12,7 @@ public final class ProductsListViewModel: ObservableObject {
     
     @Published private(set) var viewState: ViewState = .loading
     @Published private(set) var products: [Product] = []
-    @Published private(set) var errorMessage: String = ""
-
+    private(set) var errorMessage: String = ""
     private let productsListUseCase: ProductsListUseCase
     
     init(productsListUseCase: ProductsListUseCase = FetchProductsListUseCase()) {

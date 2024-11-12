@@ -13,24 +13,6 @@ public protocol ApiRequest {
     func prepareRequest<T: EndPoint>(endPoint: T) throws -> URLRequest
 }
 
-extension ApiRequest {
-    fileprivate func prepareBaseRequest<T: EndPoint>(endPoint: T) throws -> URLRequest {
-        guard let escapedUrlString = endPoint.urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
-              var url = URL(string: escapedUrlString) else {
-            throw ApiError.badUrl
-        }
-        if let params = endPoint.queryParams {
-            url = url.appending(queryItems: params)
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = endPoint.httpMethod.method
-        endPoint.headers.forEach { (key, value) in
-            request.setValue(value, forHTTPHeaderField: key)
-        }
-        return request
-    }
-}
-
 public final class ApiGetRequest: ApiRequest {
     
     public init() {}
@@ -62,5 +44,23 @@ public final class ApiPostRequest: ApiRequest {
         catch {
             throw error
         }
+    }
+}
+
+extension ApiRequest {
+    fileprivate func prepareBaseRequest<T: EndPoint>(endPoint: T) throws -> URLRequest {
+        guard let escapedUrlString = endPoint.urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
+              var url = URL(string: escapedUrlString) else {
+            throw ApiError.badUrl
+        }
+        if let params = endPoint.queryParams {
+            url = url.appending(queryItems: params)
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = endPoint.httpMethod.method
+        endPoint.headers.forEach { (key, value) in
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+        return request
     }
 }

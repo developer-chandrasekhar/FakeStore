@@ -10,15 +10,17 @@ import XCTest
 @testable import NetworkPackageManager
 
 final class ProductsListUseCaseTests: XCTestCase {
-
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-
+    
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
+}
+
+extension ProductsListUseCaseTests {
     func test_getProducts_Success() async {
         let mockRepository = ProductRepositoryMock_success()
         let useCase = FetchProductsListUseCase(productRepository: mockRepository)
@@ -45,23 +47,3 @@ final class ProductsListUseCaseTests: XCTestCase {
     }
 }
 
-
-fileprivate final class ProductRepositoryMock_success: ProductRepository {
-    func getProducts(limit: Int) async throws -> [ProductDTO] {
-        return [ProductDTO.getStub()]
-    }
-    
-    func getProductById(_ id: Int) async throws -> ProductDTO? {
-        return ProductDTO.getStub()
-    }
-}
-
-fileprivate final class ProductRepositoryMock_fail: ProductRepository {
-    func getProducts(limit: Int) async throws -> [ProductDTO] {
-        throw ApiError.serverNotAvailable
-    }
-    
-    func getProductById(_ id: Int) async throws -> ProductDTO? {
-        throw ApiError.serverNotAvailable
-    }
-}

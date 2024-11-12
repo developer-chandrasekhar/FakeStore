@@ -20,17 +20,6 @@ public final class FetchProductDetailUseCase: ProductDetailUseCase {
     }
     
     public func getProduct(byId id: Int) async throws -> Product {
-        do {
-            let data: ProductDTO = try await productRepository.getProductById(id)
-            return Product(id: data.id,
-                    title: data.title,
-                    price: data.price,
-                    description: data.description,
-                    category: data.category,
-                    image: data.image,
-                    rating: data.rating?.rate)
-        } catch {
-            throw error
-        }
+        try await productRepository.getProductById(id)
     }
 }

@@ -7,10 +7,14 @@
 
 import Foundation
 
-public struct APIStrings {
-   public static var baseURL: String { "https://fakestoreapi.com" }
+struct APIStrings {
+    static var baseURL: String {
+        //TODO: Update url based on environments
+        "https://fakestoreapi.com"
+    }
 }
 
+//MARK: URL PATHS FOR PRODUCTS
 extension APIStrings {
     static var allProducts = APIStrings.baseURL + "/products"
     static var getProductById = APIStrings.baseURL + "/products"

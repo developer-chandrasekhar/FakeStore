@@ -23,3 +23,15 @@ extension ProductDTO {
         let count: Int?
     }
 }
+
+extension ProductDTO {
+    func toProduct() -> Product {
+        Product(id: id,
+                title: title,
+                price: price,
+                description: description,
+                category: category,
+                image: image,
+                rating: rating?.rate)
+    }
+}

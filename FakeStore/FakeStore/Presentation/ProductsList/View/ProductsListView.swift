@@ -10,7 +10,7 @@ import SwiftUI
 struct ProductsListView: View {
     
     @ObservedObject private var viewModel = ProductsListViewModel()
-    let columns = [
+    private let columns = [
         GridItem(alignment: .top),
         GridItem(alignment: .top)]
     
