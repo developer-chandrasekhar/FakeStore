@@ -12,6 +12,8 @@ public enum LocalizedStrings: String {
     case noProductsAvailable = "EmptyProducts"
     case noNetwork = "NoNetwork"
     case somethingWentWrong = "SomethingWentWrong"
+    case addToCartAlertBody = "addToCartAlertBody"
+    case addToCartAlertOk = "addToCartAlertOk"
     
     var localized: String {
         return NSLocalizedString(self.rawValue, comment: "")

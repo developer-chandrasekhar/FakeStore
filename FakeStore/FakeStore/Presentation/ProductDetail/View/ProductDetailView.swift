@@ -8,15 +8,98 @@
 import SwiftUI
 
 struct ProductDetailView: View {
-   
-    @ObservedObject var viewModel: ProductDetailViewModel
     
+    private struct SizeClass {
+        let imageMaxHeight: CGFloat = 300
+        let spacerMinLengthToAddToCart: CGFloat = 100
+        let ratingCardWidth: CGFloat = 100
+        let ratingCardHeight: CGFloat = 20
+        let productPriceTopPadding: CGFloat = 2
+        let cartButtonCornerRadius: CGFloat = 5
+        let cartButtonHeight: CGFloat = 44
+    }
+    
+    @ObservedObject private var viewModel: ProductDetailViewModel
+    @State private var showAddToCartAlert: Bool = false
+    private let sizeClass = SizeClass()
+
     init(viewModel: ProductDetailViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView {
+            ZStack {
+                Color.white.edgesIgnoringSafeArea(.all)
+                mainView(product: viewModel.product)
+                    .padding()
+                if viewModel.isLoading {
+                    ProgressView()
+                }
+            }
+        }
+        .clipped()
+        .onAppear {
+            viewModel.fetchDetailProduct()
+        }
+        .alert(LocalizedStrings.addToCartAlertBody.localized, isPresented: $showAddToCartAlert) {
+            Button(LocalizedStrings.addToCartAlertOk.localized, role: .cancel) {}
+        }
+    }
+}
+
+extension ProductDetailView {
+    private func mainView(product: Product) -> some View {
+        VStack(alignment: .leading) {
+            
+            RemoteImage(urlString: product.image)
+                .padding()
+                .frame(maxHeight: sizeClass.imageMaxHeight)
+                .frame(maxWidth: .infinity)
+            
+            Text(viewModel.product.title)
+                .font(.title2)
+                .bold()
+            if let _category = product.category {
+                Text(_category)
+                    .font(.body)
+                    .foregroundStyle(.primary)
+            }
+            if let _description = product.description {
+                Text(_description)
+                    .font(.body)
+                    .foregroundStyle(.secondary)
+            }
+            HStack {
+                Text(String(format: "$%.2f", product.price))
+                    .font(.title2)
+                    .padding(.top, sizeClass.productPriceTopPadding)
+                Spacer()
+                if let rating = product.rating {
+                    RatingView(rating: rating)
+                        .frame(width: sizeClass.ratingCardWidth, height: sizeClass.ratingCardHeight)
+                }
+            }
+            Spacer(minLength: sizeClass.spacerMinLengthToAddToCart)
+            addToCartButton()
+        }
+    }
+    
+    private func addToCartButton() -> some View {
+        HStack {
+            Spacer()
+            Button("Add to Cart") {
+                showAddToCartAlert.toggle()
+            }
+            .frame(height: sizeClass.cartButtonHeight)
+            .foregroundStyle(.white)
+            .bold()
+            Spacer()
+        }
+        .background(
+            RoundedRectangle(cornerRadius: sizeClass.cartButtonCornerRadius)
+                .fill(.cyan)
+        )
     }
 }
 
