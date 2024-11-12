@@ -20,42 +20,49 @@ struct ProductsListView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if viewModel.viewState == .loading {
-                VStack {
-                    Spacer()
-                    ProgressView()
-                    Spacer()
-                }
-            }
-            else if viewModel.viewState == .empty {
-                FakeStoreEmptyView(description: LocalizedStrings.noProductsAvailable.localized)
-            }
-            else if viewModel.viewState == .error {
-                FakeStoreEmptyView(description: viewModel.errorMessage)
-            }
-            else if viewModel.products.count > 0 {
-                NavigationView {
-                    layoutProducts(products: viewModel.products)
-                        .navigationTitle(LocalizedStrings.productsListTitle.localized)
-                }
-            }
+            mainView()
         }
         .onAppear {
             viewModel.getProducts()
         }
     }
+    
+    @ViewBuilder
+    func mainView() -> some View {
+        switch viewModel.viewState {
+        case .loading:
+            VStack { ProgressView() }
+        case .empty:
+            FakeStoreEmptyView(description: LocalizedStrings.noProductsAvailable.localized)
+        case .error:
+            FakeStoreEmptyView(description: viewModel.errorMessage)
+        case .data:
+            NavigationView {
+                layoutProducts(products: viewModel.products)
+                    .navigationTitle(LocalizedStrings.productsListTitle.localized)
+            }
+        }
+    }
 }
 
 extension ProductsListView {
-    func layoutProducts(products: [Product]) -> some View {
+    private func layoutProducts(products: [Product]) -> some View {
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: 4) {
                 ForEach(viewModel.products) { product in
-                    ProductListCard(product: product)
+                    NavigationLink(destination: productDetailView(product: product)) {
+                        ProductListCard(product: product)
+                    }
                 }
             }
         }
         .clipped()
+    }
+    
+    @ViewBuilder
+    private func productDetailView(product: Product) -> some View {
+        let productDetailViewModel = ProductDetailViewModel(product: product)
+        ProductDetailView(viewModel: productDetailViewModel)
     }
 }
 

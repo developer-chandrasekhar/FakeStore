@@ -19,7 +19,9 @@ public final class ProductsListViewModel: ObservableObject {
     init(productsListUseCase: ProductsListUseCase = FetchProductsListUseCase()) {
         self.productsListUseCase = productsListUseCase
     }
-    
+}
+
+extension ProductsListViewModel {
     @MainActor
     func getProducts() {
         viewState = .loading

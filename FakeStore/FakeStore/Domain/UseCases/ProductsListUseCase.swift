@@ -12,6 +12,7 @@ public protocol ProductsListUseCase {
 }
 
 public final class FetchProductsListUseCase: ProductsListUseCase {
+   
     private let productRepository: ProductRepository
     
     init(productRepository: ProductRepository = ProductWebRepository()) {
