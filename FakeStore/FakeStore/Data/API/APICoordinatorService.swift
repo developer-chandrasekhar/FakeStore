@@ -15,7 +15,7 @@ public protocol APICoordinatorService {
                                                responseParser: GenericResponseParser) async throws -> T
 }
 
-extension APICoordinatorService {
+final class APICoordinator: APICoordinatorService {
     func connectServerWithEndPoint<T: Codable>(endPoint: EndPoint,
                                                client: APIClient = URLSession.shared,
                                                request: ApiRequest = ApiGetRequest(),
