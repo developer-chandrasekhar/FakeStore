@@ -55,7 +55,7 @@ final class APIClientTests: XCTestCase {
             expectation.fulfill()
         }
         catch {
-            XCTFail("should return data")
+            XCTFail("should not throw error")
         }
         await fulfillment(of: [expectation], timeout: 5.0)
     }

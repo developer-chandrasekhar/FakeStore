@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ApiError: Error {
+public enum ApiError: Error {
     case badUrl(url: String)
     case noNetwork
     case encodingError
