@@ -11,14 +11,16 @@ struct ProductListCard: View {
     private struct SizeClass {
         let cardHeight: CGFloat = 250
         let cardRadius: CGFloat = 10
+        let ratingCardWidth: CGFloat = 56
+        let ratingCardHeight: CGFloat = 20
     }
     let product: Product
     private let sizeClass = SizeClass()
-
+    
     var body: some View {
         VStack {
             Spacer()
-            RemoteImage(urlString: product.image!)
+            RemoteImage(urlString: product.image)
                 .padding()
             Spacer()
             HStack {
@@ -26,9 +28,16 @@ struct ProductListCard: View {
                     Text(product.title)
                         .lineLimit(3)
                         .font(.system(size: 14, weight: .semibold))
-                    Text(String(format: "$%.2f", product.price))
-                        .font(.system(size: 14))
-                        .padding(.top, 2)
+                    HStack {
+                        Text(String(format: "$%.2f", product.price))
+                            .font(.system(size: 14))
+                            .padding(.top, 2)
+                        Spacer()
+                        if let rating = product.rating {
+                            RatingView(rating: rating)
+                                .frame(width: sizeClass.ratingCardWidth, height: sizeClass.ratingCardHeight)
+                        }
+                    }
                 }
                 .padding()
                 Spacer()
