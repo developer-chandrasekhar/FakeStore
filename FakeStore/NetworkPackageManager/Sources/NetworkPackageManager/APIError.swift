@@ -8,12 +8,12 @@
 import Foundation
 
 public enum ApiError: Error {
-    case badUrl(url: String)
+    case badUrl
     case noNetwork
     case encodingError
-    case invalidResponse(url: String?)
-    case unableToDecode(reason: String)
-    case unknownError(reason: String)
+    case invalidResponse
+    case unableToDecode
+    case unknownError
     case serverNotAvailable
 }
 

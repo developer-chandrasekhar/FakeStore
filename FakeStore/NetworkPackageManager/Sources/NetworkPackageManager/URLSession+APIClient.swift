@@ -21,7 +21,7 @@ extension URLSession: APIClient {
        } catch {
            if error as? ApiError != nil { throw error }
            else {
-               throw ApiError.invalidResponse(url: request.url?.absoluteString)
+               throw ApiError.invalidResponse
            }
        }
     }
@@ -31,7 +31,7 @@ public final class HttpResponseValidator: HttpResponseValidatable {
     public init() {}
     public func validate(response: URLResponse) throws -> HTTPURLResponse {
         guard let httpResponse = response as? HTTPURLResponse else {
-            throw ApiError.invalidResponse(url: response.url?.absoluteString)
+            throw ApiError.invalidResponse
         }
         return httpResponse
     }

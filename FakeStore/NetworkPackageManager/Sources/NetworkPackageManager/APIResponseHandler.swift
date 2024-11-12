@@ -39,9 +39,9 @@ public final class GenericResponseParser: ResponseParser {
             default: break
             }
             print("Coding path: \(String(describing: decodingContext?.codingPath))")
-            throw ApiError.unableToDecode(reason: parseErrorMessage)
+            throw ApiError.unableToDecode
         } catch {
-            throw ApiError.unableToDecode(reason: "Unknown error while parsing")
+            throw ApiError.unableToDecode
         }
     }
 }

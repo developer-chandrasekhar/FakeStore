@@ -17,7 +17,7 @@ extension ApiRequest {
     fileprivate func prepareBaseRequest<T: EndPoint>(endPoint: T) throws -> URLRequest {
         guard let escapedUrlString = endPoint.urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),
               var url = URL(string: escapedUrlString) else {
-            throw ApiError.badUrl(url: endPoint.urlString)
+            throw ApiError.badUrl
         }
         if let params = endPoint.queryParams {
             url = url.appending(queryItems: params)
