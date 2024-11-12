@@ -18,3 +18,16 @@ public struct Product: Identifiable {
     public let rating: Double?
 }
 
+extension Product {
+    static func getFakeProduct() -> Product {
+        return Product(
+            id: 1,
+            title: "Stub Product",
+            price: 19.99,
+            description: "description",
+            category: "category",
+            image: "https://example.com/sample-product-image.jpg",
+            rating: 4.5
+        )
+    }
+}

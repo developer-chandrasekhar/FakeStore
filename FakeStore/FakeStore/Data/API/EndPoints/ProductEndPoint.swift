@@ -22,7 +22,10 @@ extension ProductsEndPoint {
     }
     
     public var urlString: String {
-        return APIStrings.allProducts
+        switch self {
+        case .productsList: return APIStrings.allProducts
+        case .productById(let id): return APIStrings.allProducts + "/\(id)"
+        }
     }
     
     public var queryParams: [URLQueryItem]? {

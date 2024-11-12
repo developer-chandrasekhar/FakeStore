@@ -34,7 +34,12 @@ final class ProductWebRepository: ProductRepository {
         return data
     }
     
-    func getProductById(_ id: Int) async throws -> ProductDTO? {
-        return nil
+    func getProductById(_ id: Int) async throws -> ProductDTO {
+        let endpoint = ProductsEndPoint.productById(id: id)
+        let data: ProductDTO = try await apiCoordinator.connectServerWithEndPoint(endPoint: endpoint,
+                                                                                   client: apiClient,
+                                                                                   request: ApiGetRequest(),
+                                                                                   responseParser: GenericResponseParser())
+        return data
     }
 }
