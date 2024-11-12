@@ -26,7 +26,7 @@ extension ProductDetailViewModelTests {
         let viewModel = ProductDetailViewModel(productDetailUseCase: mockUseCase, product: Product.getStub())
         Task {
             await viewModel.fetchDetailProduct()
-            XCTAssertNotNil(viewModel.product, "Product should not be nil")
+            XCTAssertNotNil(viewModel.product)
         }
     }
     
@@ -35,7 +35,7 @@ extension ProductDetailViewModelTests {
         let viewModel = ProductDetailViewModel(productDetailUseCase: mockUseCase, product: Product.getStub())
         Task {
             await viewModel.fetchDetailProduct()
-            XCTAssertFalse(viewModel.isLoading, "Loader should be false")
+            XCTAssertFalse(viewModel.isLoading)
         }
     }
 }
