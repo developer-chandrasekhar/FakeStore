@@ -25,13 +25,13 @@ extension ProductsListViewModelTests {
     func test_handle_error_no_Network() {
         let viewModel = ProductsListViewModel()
         viewModel.handleErrors(error: ApiError.noNetwork)
-        XCTAssertEqual(viewModel.errorMessage, LocalizedStrings.noNetwork.localized)
+        XCTAssertEqual(viewModel.errorMessage, LocalizedStrings.noNetwork.localized, "error should be no network.")
     }
     
     func test_handle_error() {
         let viewModel = ProductsListViewModel()
         viewModel.handleErrors(error: ApiError.serverNotAvailable)
-        XCTAssertEqual(viewModel.errorMessage, LocalizedStrings.somethingWentWrong.localized)
+        XCTAssertEqual(viewModel.errorMessage, LocalizedStrings.somethingWentWrong.localized, "error should be something went wrong.")
     }
 }
 
@@ -39,15 +39,15 @@ extension ProductsListViewModelTests {
     func test_handle_products_empty() {
         let viewModel = ProductsListViewModel()
         viewModel.handleProducts(products: [])
-        XCTAssertEqual(viewModel.viewState, .empty)
-        XCTAssertTrue(viewModel.products.isEmpty)
+        XCTAssertEqual(viewModel.viewState, .empty, "ViewState should be empty.")
+        XCTAssertTrue(viewModel.products.isEmpty, "Products should be empty.")
     }
     
     func test_handle_products_not_empty() {
         let viewModel = ProductsListViewModel()
         viewModel.handleProducts(products: [Product.getStub()])
-        XCTAssertEqual(viewModel.viewState, .data)
-        XCTAssertTrue(viewModel.products.count > 0)
+        XCTAssertEqual(viewModel.viewState, .data, "ViewState should be data.")
+        XCTAssertTrue(viewModel.products.count > 0, "Products should not be empty.")
     }
 }
 
@@ -57,7 +57,7 @@ extension ProductsListViewModelTests {
         let viewModel = ProductsListViewModel(productsListUseCase: mockUseCase)
         Task {
             await viewModel.getProducts()
-            XCTAssertEqual(viewModel.products.count, 1)
+            XCTAssertEqual(viewModel.products.count, 1, "Products should be 1.")
         }
     }
     
@@ -66,7 +66,7 @@ extension ProductsListViewModelTests {
         let viewModel = ProductsListViewModel(productsListUseCase: mockUseCase)
         Task {
             await viewModel.getProducts()
-            XCTAssertEqual(viewModel.viewState, .error)
+            XCTAssertEqual(viewModel.viewState, .error, "ViewState should be error.")
         }
     }
     
@@ -77,7 +77,7 @@ extension ProductsListViewModelTests {
         let viewModel = ProductsListViewModel(productsListUseCase: useCase)
         Task {
             await viewModel.getProducts()
-            XCTAssertEqual(viewModel.viewState, .error)
+            XCTAssertEqual(viewModel.viewState, .error, "ViewState should be error.")
         }
     }
 }

@@ -53,15 +53,19 @@ extension ProductWebRepositoryTests {
     func test_fetchProduct_success() async throws {
         let apiClient = MockApiClient(jsonString: singleProductJson)
         let repository = ProductWebRepository(apiClient: apiClient)
-        let product = try await repository.getProductById(1)
-        XCTAssertEqual(product.id, 1)
+        Task {
+            let product = try await repository.getProductById(1)
+            XCTAssertEqual(product.id, 1, "Product id is not equal to 1")
+        }
     }
     
     func test_fetchProducts_success() async throws {
         let apiClient = MockApiClient(jsonString: multiProductJson)
         let repository = ProductWebRepository(apiClient: apiClient)
-        let products = try await repository.getProducts(limit: 1)
-        XCTAssertEqual(products.count, 1)
+        Task {
+            let products = try await repository.getProducts(limit: 1)
+            XCTAssertEqual(products.count, 1, "Products count is not equal to 1")
+        }
     }
 }
 

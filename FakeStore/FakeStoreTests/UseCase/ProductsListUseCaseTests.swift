@@ -27,7 +27,7 @@ extension ProductsListUseCaseTests {
         Task {
             do {
                 let data = try await useCase.getProducts(limit: 1)
-                XCTAssertEqual(data.count, 1)
+                XCTAssertEqual(data.count, 1, "Data should be there")
             } catch {
                 XCTFail("Should not throw error")
             }
@@ -41,7 +41,7 @@ extension ProductsListUseCaseTests {
             do {
                 let _ = try await useCase.getProducts(limit: 1)
             } catch {
-                XCTAssertTrue(((error as? ApiError) != nil))
+                XCTAssertTrue(((error as? ApiError) != nil), "Error should not be nil")
             }
         }
     }
