@@ -11,7 +11,7 @@ import SwiftUI
 struct FakeStoreApp: App {
     var body: some Scene {
         WindowGroup {
-            ProductsListView()
+            ProductsListView(viewModel: ViewModelFactory().productListViewModel())
         }
     }
 }

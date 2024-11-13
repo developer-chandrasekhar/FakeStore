@@ -34,13 +34,3 @@ extension ProductDetailViewModel {
         }
     }
 }
-
-//MARK: Return mock use case while UITesting
-extension ProductDetailViewModel {
-    static func mockUseCase() -> ProductDetailUseCase? {
-        if ProcessInfo.processInfo.arguments.contains("UITesting") {
-            return MockProductDetailUseCase()
-        }
-        return nil
-    }
-}

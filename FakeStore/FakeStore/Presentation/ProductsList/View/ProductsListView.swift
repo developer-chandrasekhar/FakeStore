@@ -14,14 +14,8 @@ struct ProductsListView: View {
         GridItem(alignment: .top),
         GridItem(alignment: .top)]
     
-    init(viewModel: ProductsListViewModel = ProductsListViewModel()) {
-        // While UITesting mock use case is created
-        if let useCase = ProductsListViewModel.mockUseCase()  {
-            self.viewModel = ProductsListViewModel(productsListUseCase: useCase)
-        }
-        else {
-            self.viewModel = viewModel
-        }
+    init(viewModel: ProductsListViewModel) {
+        self.viewModel = viewModel
     }
     
     var body: some View {
@@ -67,7 +61,7 @@ extension ProductsListView {
     
     @ViewBuilder
     private func productDetailView(product: Product) -> some View {
-        let productDetailViewModel = ProductDetailViewModel(product: product)
+        let productDetailViewModel = ViewModelFactory().productDetailViewModel(product: product)
         ProductDetailView(viewModel: productDetailViewModel)
     }
 }

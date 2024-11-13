@@ -13,13 +13,7 @@ struct ProductDetailView: View {
     @State private var showAddToCartAlert: Bool = false
 
     init(viewModel: ProductDetailViewModel) {
-        // While UITesting mock use case is created
-        if let mockUseCase = ProductDetailViewModel.mockUseCase() {
-            self.viewModel = ProductDetailViewModel(productDetailUseCase: mockUseCase, product: viewModel.product)
-        }
-        else {
-            self.viewModel = viewModel
-        }
+        self.viewModel = viewModel
     }
     
     var body: some View {
