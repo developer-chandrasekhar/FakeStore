@@ -27,6 +27,7 @@ Podfile.lock
 *.xccheckout
 *.xcscmblueprint
 *.DS_Store
+*.xctestplan
 .DS_Store
 FakeStore/.DS_Store
 Package.resolved
