@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B072CF6C2CE46B45003284CE /* FakeStore.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = FakeStore.xctestplan; path = ../../../Desktop/FakeStore.xctestplan; sourceTree = "<group>"; };
 		B09C824F2CE1297F001FB54C /* FakeStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09C825F2CE12981001FB54C /* FakeStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FakeStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09C82692CE12981001FB54C /* FakeStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FakeStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +83,7 @@
 		B09C82462CE1297F001FB54C = {
 			isa = PBXGroup;
 			children = (
+				B072CF6C2CE46B45003284CE /* FakeStore.xctestplan */,
 				B09C82512CE1297F001FB54C /* FakeStore */,
 				B09C82622CE12981001FB54C /* FakeStoreTests */,
 				B09C826C2CE12981001FB54C /* FakeStoreUITests */,
@@ -191,6 +193,7 @@
 					};
 					B09C82682CE12981001FB54C = {
 						CreatedOnToolsVersion = 16.0;
+						LastSwiftMigration = 1610;
 						TestTargetID = B09C824E2CE1297F001FB54C;
 					};
 				};
@@ -503,6 +506,7 @@
 		B09C827A2CE12981001FB54C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8L585SN3AU;
@@ -511,6 +515,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sd.FakeStoreUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = FakeStore;
@@ -520,6 +525,7 @@
 		B09C827B2CE12981001FB54C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8L585SN3AU;
