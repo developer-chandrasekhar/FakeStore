@@ -7,10 +7,13 @@
 
 import Foundation
 
+/// Protocol defining the contract for parsing data into Codable types.
 public protocol ResponseParser {
     func parseResponse<T: Codable>(data: Data) throws -> T
 }
 
+/// Parses the provided data into a model of type `T` using `JSONDecoder`.
+/// If error occurs while parsing, provides complete log for the failure
 public final class GenericResponseParser: ResponseParser {
     
     public init() {}

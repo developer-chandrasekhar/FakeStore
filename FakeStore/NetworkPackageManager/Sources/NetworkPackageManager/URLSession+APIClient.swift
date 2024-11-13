@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+/// Extends `URLSession` to conform to the `APIClient` protocol, enabling async network requests.	
 extension URLSession: APIClient {
    public func connect(for request: URLRequest, validator: HttpResponseValidatable) async throws -> APIResult {
        do {
@@ -27,6 +27,7 @@ extension URLSession: APIClient {
     }
 }
 
+/// A class that validates an `URLResponse` by ensuring it is an `HTTPURLResponse`.
 public final class HttpResponseValidator: HttpResponseValidatable {
     public init() {}
     public func validate(response: URLResponse) throws -> HTTPURLResponse {

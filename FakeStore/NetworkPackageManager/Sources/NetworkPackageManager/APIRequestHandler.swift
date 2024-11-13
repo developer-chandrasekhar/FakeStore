@@ -7,12 +7,17 @@
 
 import Foundation
 
+/// A typealias representing a payload dictionary for URL requests where the values conform to `Encodable`.
 public typealias URLRequestPayload = [String: Encodable]
 
+/// Defines an interface for preparing `URLRequest` objects from an `EndPoint`.
+/// - Throws: An error if the request could not be prepared.
+/// - Returns: A configured `URLRequest` instance.
 public protocol ApiRequest {
     func prepareRequest<T: EndPoint>(endPoint: T) throws -> URLRequest
 }
 
+/// A class responsible for creating GET requests.
 public final class ApiGetRequest: ApiRequest {
     
     public init() {}
@@ -26,6 +31,8 @@ public final class ApiGetRequest: ApiRequest {
     }
 }
 
+/// A class responsible for creating POST requests with a payload.
+/// Once request is prepared using base request method, appends payload to it
 public final class ApiPostRequest: ApiRequest {
     
     let payload: Encodable
@@ -47,6 +54,8 @@ public final class ApiPostRequest: ApiRequest {
     }
 }
 
+/// Provides a base implementation for preparing a `URLRequest`.
+/// Based on the endpoint information this class can create base request.
 extension ApiRequest {
     fileprivate func prepareBaseRequest<T: EndPoint>(endPoint: T) throws -> URLRequest {
         guard let escapedUrlString = endPoint.urlString.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed),

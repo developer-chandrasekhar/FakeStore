@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Provides API Errors 
 public enum ApiError: Error {
     case badUrl
     case noNetwork
