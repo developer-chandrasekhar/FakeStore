@@ -8,6 +8,9 @@
 import Foundation
 import NetworkPackageManager
 
+/// A concrete implementation of `ProductRepository` for fetching product data from a web service.
+/// `ProductWebRepository` is responsible for interacting with the API to retrieve product data. It uses the `APICoordinator`
+
 final class ProductWebRepository: ProductRepository {
     
     private let reachability: Reachability

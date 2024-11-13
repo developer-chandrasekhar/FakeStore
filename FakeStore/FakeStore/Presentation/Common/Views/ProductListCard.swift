@@ -8,14 +8,8 @@
 import SwiftUI
 
 struct ProductListCard: View {
-    private struct SizeClass {
-        let cardHeight: CGFloat = 250
-        let cardRadius: CGFloat = 10
-        let ratingCardWidth: CGFloat = 56
-        let ratingCardHeight: CGFloat = 20
-    }
+
     let product: Product
-    private let sizeClass = SizeClass()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -39,15 +33,16 @@ struct ProductListCard: View {
                 Spacer()
                 if let rating = product.rating {
                     RatingView(rating: rating)
-                        .frame(width: sizeClass.ratingCardWidth, height: sizeClass.ratingCardHeight)
+                        .frame(width: SizeConstants.ProductCard.ratingCardWidth,
+                               height: SizeConstants.ProductCard.ratingCardHeight)
                 }
             }
             .padding(.horizontal)
             .padding(.bottom)
         }
-        .frame(maxHeight: sizeClass.cardHeight)
+        .frame(maxHeight: SizeConstants.ProductCard.cardHeight)
         .background(
-            RoundedRectangle(cornerRadius: sizeClass.cardRadius)
+            RoundedRectangle(cornerRadius: SizeConstants.ProductCard.cardRadius)
                 .fill(.white)
                 .shadow(color: .black.opacity(0.3), radius: 6, x: 1, y: 5)
         )

@@ -9,19 +9,8 @@ import SwiftUI
 
 struct ProductDetailView: View {
     
-    private struct SizeClass {
-        let imageMaxHeight: CGFloat = 300
-        let spacerMinLengthToAddToCart: CGFloat = 100
-        let ratingCardWidth: CGFloat = 100
-        let ratingCardHeight: CGFloat = 20
-        let productPriceTopPadding: CGFloat = 2
-        let cartButtonCornerRadius: CGFloat = 5
-        let cartButtonHeight: CGFloat = 44
-    }
-    
     @ObservedObject private var viewModel: ProductDetailViewModel
     @State private var showAddToCartAlert: Bool = false
-    private let sizeClass = SizeClass()
 
     init(viewModel: ProductDetailViewModel) {
         // While UITesting mock use case is created
@@ -60,7 +49,7 @@ extension ProductDetailView {
             
             RemoteImage(urlString: product.image)
                 .padding()
-                .frame(maxHeight: sizeClass.imageMaxHeight)
+                .frame(maxHeight: SizeConstants.ProductDetailView.imageMaxHeight)
                 .frame(maxWidth: .infinity)
             
             Text(viewModel.product.title)
@@ -79,14 +68,15 @@ extension ProductDetailView {
             HStack {
                 Text(String(format: "$%.2f", product.price))
                     .font(.title2)
-                    .padding(.top, sizeClass.productPriceTopPadding)
+                    .padding(.top, 2)
                 Spacer()
                 if let rating = product.rating {
                     RatingView(rating: rating)
-                        .frame(width: sizeClass.ratingCardWidth, height: sizeClass.ratingCardHeight)
+                        .frame(width: SizeConstants.ProductDetailView.ratingCardWidth,
+                               height: SizeConstants.ProductDetailView.ratingCardHeight)
                 }
             }
-            Spacer(minLength: sizeClass.spacerMinLengthToAddToCart)
+            Spacer(minLength: SizeConstants.ProductDetailView.spacerMinLengthToAddToCart)
             addToCartButton()
         }
     }
@@ -97,13 +87,13 @@ extension ProductDetailView {
             Button("Add to Cart") {
                 showAddToCartAlert.toggle()
             }
-            .frame(height: sizeClass.cartButtonHeight)
+            .frame(height: SizeConstants.ProductDetailView.cartButtonHeight)
             .foregroundStyle(.white)
             .bold()
             Spacer()
         }
         .background(
-            RoundedRectangle(cornerRadius: sizeClass.cartButtonCornerRadius)
+            RoundedRectangle(cornerRadius: SizeConstants.ProductDetailView.cartButtonCornerRadius)
                 .fill(.cyan)
         )
     }

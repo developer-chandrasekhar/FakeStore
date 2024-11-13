@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A data transfer object representing a product
 public struct ProductDTO: Codable {
     let id: Int
     let title: String
@@ -24,6 +25,7 @@ extension ProductDTO {
     }
 }
 
+/// Product mapper from ProductDTO to Product
 extension ProductDTO {
     func toProduct() -> Product {
         Product(id: id,

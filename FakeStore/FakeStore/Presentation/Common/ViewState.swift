@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// An enum representing various states of a view, such as loading, empty, data, or error.
 public enum ViewState {
     case loading
     case empty

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A model representing a product in the application.
 public struct Product: Identifiable {
     
     public let id: Int
@@ -18,6 +19,7 @@ public struct Product: Identifiable {
     public let rating: Double?
 }
 
+/// A fake model representing a product used in UI tests and previews if needed
 extension Product {
     static func getFakeProduct() -> Product {
         return Product(

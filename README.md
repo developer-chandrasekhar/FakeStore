@@ -5,7 +5,7 @@ The FakeStore app is a modern SwiftUI application built with a focus on maintain
 - **SwiftUI:** Utilizes the latest declarative UI toolkit for iOS, enabling the development of responsive, beautiful, fast, and reusable UIs.
 - **Swift:** The primary programming language used for development, ensuring modern, safe, and performance-focused code.
 - **Async Image:** Leverages the built-in AsyncImage to efficiently load images from remote sources, enhancing user experience with seamless image handling.
-- **Async Programming:** Utilizes async/await for improved concurrency, ensuring responsive and efficient task handling.
+- **Async Programming:** Utilizes `async/await` for improved concurrency, ensuring responsive and efficient task handling.
 - **Unit Testing:** Ensures comprehensive code coverage and reliability through structured testing.
 - **UI Testing:** Provides robust testing to validate user interface interactions and maintain application stability.
 ## Networking

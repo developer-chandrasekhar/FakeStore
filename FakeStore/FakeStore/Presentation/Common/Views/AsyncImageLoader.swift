@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// A custom SwiftUI `View` to display an image fetched from a remote URL.
 struct RemoteImage: View {
     let urlString: String?
     @State private var showImage = false
