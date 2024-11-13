@@ -9,7 +9,7 @@
 
 "ProductsListTitle" = "Products List";
 "EmptyProducts" = "No Products Available";
-"NoNetwork" = "Seems to be you are offline, Check your internet connectivity";
+"NoNetwork" = "Seems to be you are offline, Check your internet connectivity.";
 "SomethingWentWrong" = "Something went wrong, please try again after sometime.";
 "addToCartAlertBody" = "Item added successfully";
 "addToCartAlertOk" = "Ok";

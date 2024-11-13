@@ -18,30 +18,32 @@ struct ProductListCard: View {
     private let sizeClass = SizeClass()
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Spacer()
             RemoteImage(urlString: product.image)
                 .padding()
+                .frame(maxWidth: .infinity)
             Spacer()
+            Text(product.title)
+                .lineLimit(3)
+                .font(.system(size: 14, weight: .semibold))
+                .multilineTextAlignment(.leading)
+                .padding(.horizontal)
+                .foregroundStyle(.black)
+            
             HStack {
-                VStack(alignment: .leading) {
-                    Text(product.title)
-                        .lineLimit(3)
-                        .font(.system(size: 14, weight: .semibold))
-                    HStack {
-                        Text(String(format: "$%.2f", product.price))
-                            .font(.system(size: 14))
-                            .padding(.top, 2)
-                        Spacer()
-                        if let rating = product.rating {
-                            RatingView(rating: rating)
-                                .frame(width: sizeClass.ratingCardWidth, height: sizeClass.ratingCardHeight)
-                        }
-                    }
-                }
-                .padding()
+                Text(String(format: "$%.2f", product.price))
+                    .font(.system(size: 14))
+                    .padding(.top, 2)
+                    .foregroundStyle(.black)
                 Spacer()
+                if let rating = product.rating {
+                    RatingView(rating: rating)
+                        .frame(width: sizeClass.ratingCardWidth, height: sizeClass.ratingCardHeight)
+                }
             }
+            .padding(.horizontal)
+            .padding(.bottom)
         }
         .frame(maxHeight: sizeClass.cardHeight)
         .background(
