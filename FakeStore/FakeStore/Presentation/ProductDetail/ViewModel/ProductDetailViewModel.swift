@@ -10,7 +10,8 @@ import Foundation
 public final class ProductDetailViewModel: ObservableObject {
    
     @Published private(set) var product: Product
-    @Published var isLoading = true
+    @Published private(set) var viewState: ViewState = .loading
+
     private var productDetailUseCase : ProductDetailUseCase
     
     init(productDetailUseCase: ProductDetailUseCase = FetchProductDetailUseCase(),
@@ -27,12 +28,22 @@ extension ProductDetailViewModel {
             do {
                 let product = try await productDetailUseCase.getProduct(byId: product.id)
                 self.product = product
-                isLoading = false
+                self.viewState = .data
             }
             catch {
+                self.viewState = .error
                 print(error)
-                isLoading = false
             }
         }
+    }
+}
+
+//MARK: Return mock use case while UITesting
+extension ProductDetailViewModel {
+    static func mockUseCase() -> ProductDetailUseCase? {
+        if ProcessInfo.processInfo.arguments.contains("UITesting") {
+            return MockProductDetailUseCase()
+        }
+        return nil
     }
 }

@@ -50,3 +50,16 @@ extension ProductsListViewModel {
         viewState = .error
     }
 }
+
+//MARK: Return mock use case while UITesting
+extension ProductsListViewModel {
+    static func mockUseCase() -> ProductsListUseCase? {
+        if ProcessInfo.processInfo.arguments.contains("UITesting_NoNetwork") {
+            return MockProductsListUseCase_NoNetwork()
+        }
+        if ProcessInfo.processInfo.arguments.contains("UITesting") {
+            return MockProductsListUseCase()
+        }
+        return nil
+    }
+}

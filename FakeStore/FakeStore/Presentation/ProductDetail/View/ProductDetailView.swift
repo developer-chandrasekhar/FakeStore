@@ -24,7 +24,13 @@ struct ProductDetailView: View {
     private let sizeClass = SizeClass()
 
     init(viewModel: ProductDetailViewModel) {
-        self.viewModel = viewModel
+        // While UITesting mock use case is created
+        if let mockUseCase = ProductDetailViewModel.mockUseCase() {
+            self.viewModel = ProductDetailViewModel(productDetailUseCase: mockUseCase, product: viewModel.product)
+        }
+        else {
+            self.viewModel = viewModel
+        }
     }
     
     var body: some View {
@@ -33,7 +39,7 @@ struct ProductDetailView: View {
                 Color.white.edgesIgnoringSafeArea(.all)
                 mainView(product: viewModel.product)
                     .padding()
-                if viewModel.isLoading {
+                if viewModel.viewState == .loading {
                     ProgressView()
                 }
             }
@@ -104,5 +110,5 @@ extension ProductDetailView {
 }
 
 #Preview {
-    ProductDetailView(viewModel: ProductDetailViewModel(product: Product.getFakeProduct()))
+    ProductDetailView(viewModel: ProductDetailViewModel(productDetailUseCase: MockProductDetailUseCase(), product: Product.getFakeProduct()))
 }

@@ -15,7 +15,13 @@ struct ProductsListView: View {
         GridItem(alignment: .top)]
     
     init(viewModel: ProductsListViewModel = ProductsListViewModel()) {
-        self.viewModel = viewModel
+        // While UITesting mock use case is created
+        if let useCase = ProductsListViewModel.mockUseCase()  {
+            self.viewModel = ProductsListViewModel(productsListUseCase: useCase)
+        }
+        else {
+            self.viewModel = viewModel
+        }
     }
     
     var body: some View {
@@ -67,5 +73,6 @@ extension ProductsListView {
 }
 
 #Preview {
-    ProductsListView()
+    // While preview avoid network calls using mock use case
+    ProductsListView(viewModel: ProductsListViewModel(productsListUseCase: MockProductsListUseCase()))
 }
