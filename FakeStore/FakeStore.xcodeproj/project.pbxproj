@@ -29,7 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B072CF6C2CE46B45003284CE /* FakeStore.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = FakeStore.xctestplan; path = ../../../Desktop/FakeStore.xctestplan; sourceTree = "<group>"; };
 		B09C824F2CE1297F001FB54C /* FakeStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FakeStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09C825F2CE12981001FB54C /* FakeStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FakeStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B09C82692CE12981001FB54C /* FakeStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FakeStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,7 +82,6 @@
 		B09C82462CE1297F001FB54C = {
 			isa = PBXGroup;
 			children = (
-				B072CF6C2CE46B45003284CE /* FakeStore.xctestplan */,
 				B09C82512CE1297F001FB54C /* FakeStore */,
 				B09C82622CE12981001FB54C /* FakeStoreTests */,
 				B09C826C2CE12981001FB54C /* FakeStoreUITests */,
