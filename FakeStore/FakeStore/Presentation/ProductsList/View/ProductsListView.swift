@@ -28,8 +28,8 @@ struct ProductsListView: View {
         VStack(alignment: .leading) {
             mainView()
         }
-        .onAppear {
-            viewModel.getProducts()
+        .task {
+            await viewModel.getProducts()
         }
     }
     

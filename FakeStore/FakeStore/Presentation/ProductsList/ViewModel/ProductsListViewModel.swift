@@ -22,15 +22,13 @@ public final class ProductsListViewModel: ObservableObject {
 
 extension ProductsListViewModel {
     @MainActor
-    func getProducts() {
+    func getProducts() async {
         viewState = .loading
-        Task {
-            do {
-                let products = try await productsListUseCase.getProducts(limit: 20)
-                handleProducts(products: products)
-            } catch {
-                handleErrors(error: error)
-            }
+        do {
+            let products = try await productsListUseCase.getProducts(limit: 20)
+            handleProducts(products: products)
+        } catch {
+            handleErrors(error: error)
         }
     }
     

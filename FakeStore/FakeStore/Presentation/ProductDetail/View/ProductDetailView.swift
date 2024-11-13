@@ -45,8 +45,8 @@ struct ProductDetailView: View {
             }
         }
         .clipped()
-        .onAppear {
-            viewModel.fetchDetailProduct()
+        .task {
+            await viewModel.fetchDetailProduct()
         }
         .alert(LocalizedStrings.addToCartAlertBody.localized, isPresented: $showAddToCartAlert) {
             Button(LocalizedStrings.addToCartAlertOk.localized, role: .cancel) {}

@@ -22,18 +22,15 @@ public final class ProductDetailViewModel: ObservableObject {
 }
 
 extension ProductDetailViewModel {
+
     @MainActor
-    func fetchDetailProduct() {
-        Task {
-            do {
-                let product = try await productDetailUseCase.getProduct(byId: product.id)
-                self.product = product
-                self.viewState = .data
-            }
-            catch {
-                self.viewState = .error
-                print(error)
-            }
+    func fetchDetailProduct() async {
+        do {
+            let product = try await productDetailUseCase.getProduct(byId: product.id)
+            self.product = product
+            self.viewState = .data
+        }catch {
+            self.viewState = .error
         }
     }
 }
