@@ -2,10 +2,10 @@
 The FakeStore app is a modern SwiftUI application built with a focus on maintainability, testability, scalability, simplicity, and performance. By leveraging Clean Architecture and MVVM principles, the project ensures a well-structured and modular codebase that enhances code reusability and separation of concerns.
 ## Coding Standards
 - **Multi-Module Architecture:** Designed with a modular project structure to ensure better separation of responsibilities, enhanced build times, and improved scalability.
-- **SwiftUI:** Utilizes the latest declarative UI toolkit for iOS, enabling the development of responsive, beautiful, fast, and reusable UIs.
+- **SwiftUI:** Utilises the latest declarative UI toolkit for iOS, enabling the development of responsive, beautiful, fast, and reusable UIs.
 - **Swift:** The primary programming language used for development, ensuring modern, safe, and performance-focused code.
-- **Async Image:** Leverages the built-in AsyncImage to efficiently load images from remote sources, enhancing user experience with seamless image handling.
-- **Async Programming:** Utilizes `async/await` for improved concurrency, ensuring responsive and efficient task handling.
+- **Async Programming:** Utilises `async/await` for improved concurrency, ensuring responsive and efficient task handling.
+- **KFImage:** Leverages the KIngFisher Image to efficiently load images from remote sources, enhancing user experience with seamless image handling with effective cacheing.
 - **Unit Testing:** Ensures comprehensive code coverage and reliability through structured testing.
 - **UI Testing:** Provides robust testing to validate user interface interactions and maintain application stability.
 ## Networking

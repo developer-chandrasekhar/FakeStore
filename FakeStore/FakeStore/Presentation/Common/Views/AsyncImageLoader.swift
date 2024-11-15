@@ -6,35 +6,22 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 /// A custom SwiftUI `View` to display an image fetched from a remote URL.
 struct RemoteImage: View {
     let urlString: String?
     @State private var showImage = false
-
+    
     var body: some View {
-        if let urlString {
-            AsyncImage(url: URL(string: urlString)) { phase in
-                switch phase {
-                case .empty:
-                    placeholder()
-                case .success(let image):
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .opacity(showImage ? 1 : 0.2)
-                        .animation(.easeInOut(duration: 0.6), value: showImage)
-                        .onAppear { showImage = true }
-                case .failure:
-                    placeholder()
-                @unknown default:
-                    EmptyView()
-                }
+        KFImage(URL(string: urlString ?? ""))
+            .placeholder {
+                placeholder()
             }
-        }
-        else {
-            placeholder()
-        }
+            .resizable()
+            .transition(.opacity)
+            .scaledToFit()
+            .clipped()
     }
     
     private func placeholder() -> some View {

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B041065D2CE24B3D0022BA94 /* NetworkPackageManager in Frameworks */ = {isa = PBXBuildFile; productRef = B041065C2CE24B3D0022BA94 /* NetworkPackageManager */; };
 		B04106602CE24B550022BA94 /* NetworkPackageManager in Frameworks */ = {isa = PBXBuildFile; productRef = B041065F2CE24B550022BA94 /* NetworkPackageManager */; };
+		B0D585B02CE7C0AE00ABE2A6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B0D585AF2CE7C0AE00ABE2A6 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0D585B02CE7C0AE00ABE2A6 /* Kingfisher in Frameworks */,
 				B04106602CE24B550022BA94 /* NetworkPackageManager in Frameworks */,
 				B041065D2CE24B3D0022BA94 /* NetworkPackageManager in Frameworks */,
 			);
@@ -121,6 +123,7 @@
 			packageProductDependencies = (
 				B041065C2CE24B3D0022BA94 /* NetworkPackageManager */,
 				B041065F2CE24B550022BA94 /* NetworkPackageManager */,
+				B0D585AF2CE7C0AE00ABE2A6 /* Kingfisher */,
 			);
 			productName = FakeStore;
 			productReference = B09C824F2CE1297F001FB54C /* FakeStore.app */;
@@ -207,6 +210,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B041065E2CE24B550022BA94 /* XCLocalSwiftPackageReference "NetworkPackageManager" */,
+				B0D585AE2CE7C0AE00ABE2A6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B09C82502CE1297F001FB54C /* Products */;
@@ -586,6 +590,17 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		B0D585AE2CE7C0AE00ABE2A6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		B041065C2CE24B3D0022BA94 /* NetworkPackageManager */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -594,6 +609,11 @@
 		B041065F2CE24B550022BA94 /* NetworkPackageManager */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkPackageManager;
+		};
+		B0D585AF2CE7C0AE00ABE2A6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0D585AE2CE7C0AE00ABE2A6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
