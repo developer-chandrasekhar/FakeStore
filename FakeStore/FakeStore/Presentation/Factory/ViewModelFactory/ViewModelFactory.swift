@@ -7,20 +7,34 @@
 
 import Foundation
 
-/// This is the place where we can create view models
+/// Using this protocol, enabled convenience to pass custom arguments
+public protocol ProcessInfoProviderProtocol {
+    var arguments: [String] { get }
+}
 
+/// This class is a concrete implementation for actual process info arguments
+final class ProcessInfoProvider: ProcessInfoProviderProtocol {
+    var arguments = ProcessInfo.processInfo.arguments
+}
+
+/// This is the place where we can create view model instances
 final class ViewModelFactory {
     
     private let userInterFaceTestingKey = "UITesting"
     private let userInterFaceTesting_NoNetworkKey = "UITesting_NoNetwork"
+    private(set) var processInfoProvider: ProcessInfoProviderProtocol
+    
+    init(processInfoProvider: ProcessInfoProviderProtocol = ProcessInfoProvider()) {
+        self.processInfoProvider = processInfoProvider
+    }
     
     public func productListViewModel() -> ProductsListViewModel {
         // Return view model with mock useCase while UITesting no network condition
-        if ProcessInfo.processInfo.arguments.contains(userInterFaceTesting_NoNetworkKey) {
+        if processInfoProvider.arguments.contains(userInterFaceTesting_NoNetworkKey) {
             return ProductsListViewModel(productsListUseCase: MockProductsListUseCase_NoNetwork())
         }
         // Return view model with mock useCase while UITesting
-        if ProcessInfo.processInfo.arguments.contains(userInterFaceTestingKey) {
+        if processInfoProvider.arguments.contains(userInterFaceTestingKey) {
             return ProductsListViewModel(productsListUseCase: MockProductsListUseCase())
         }
         // Actual view model
@@ -29,7 +43,7 @@ final class ViewModelFactory {
     
     public func productDetailViewModel(product: Product) -> ProductDetailViewModel {
         // Return view model with mock useCase while UITesting
-        if ProcessInfo.processInfo.arguments.contains(userInterFaceTestingKey) {
+        if processInfoProvider.arguments.contains(userInterFaceTestingKey) {
             return ProductDetailViewModel(productDetailUseCase: MockProductDetailUseCase(), product: product)
         }
         // Actual view model
