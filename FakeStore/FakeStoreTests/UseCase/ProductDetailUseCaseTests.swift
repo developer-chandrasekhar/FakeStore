@@ -21,28 +21,26 @@ final class ProductDetailUseCaseTests: XCTestCase {
 }
 
 extension ProductDetailUseCaseTests {
+
     func test_getProduct_Success() async {
         let mockRepository = ProductRepositoryMock_success()
         let useCase = FetchProductDetailUseCase(productRepository: mockRepository)
-        Task {
-            do {
-                let data = try await useCase.getProduct(byId: 1)
-                XCTAssertNotNil(data, "Products should not be nil.")
-            } catch {
-                XCTFail("Should not throw error")
-            }
+        do {
+            let data = try await useCase.getProduct(byId: 1)
+            XCTAssertNotNil(data, "Products should not be nil.")
+        } catch {
+            XCTFail("Should not throw error")
         }
     }
     
     func test_getProducts_Fail() async {
         let mockRepository = ProductRepositoryMock_fail()
         let useCase = FetchProductDetailUseCase(productRepository: mockRepository)
-        Task {
-            do {
-                let _ = try await useCase.getProduct(byId: 1)
-            } catch {
-                XCTAssertTrue(((error as? ApiError) != nil), "Should throw ApiError")
-            }
+        do {
+            let _ = try await useCase.getProduct(byId: 1)
+            XCTFail("Should throw error")
+        } catch {
+            XCTAssertTrue(((error as? ApiError) != nil), "Should throw ApiError")
         }
     }
 }

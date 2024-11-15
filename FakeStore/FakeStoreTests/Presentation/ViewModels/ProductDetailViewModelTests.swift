@@ -24,19 +24,15 @@ extension ProductDetailViewModelTests {
     func test_get_product_success() async {
         let mockUseCase = ProductDetailUseCaseMock_success()
         let viewModel = ProductDetailViewModel(productDetailUseCase: mockUseCase, product: Product.getStub())
-        Task {
-            await viewModel.fetchDetailProduct()
-            XCTAssertNotNil(viewModel.product, "Product should be not nil")
-        }
+        await viewModel.fetchDetailProduct()
+        XCTAssertNotNil(viewModel.product, "Product should be not nil")
     }
     
     func test_get_product_fail() async {
         let mockUseCase = ProductDetailUseCaseMock_fail()
         let viewModel = ProductDetailViewModel(productDetailUseCase: mockUseCase, product: Product.getStub())
-        Task {
-            await viewModel.fetchDetailProduct()
-            XCTAssertEqual(viewModel.viewState, .error, "view state should be error")
-        }
+        await viewModel.fetchDetailProduct()
+        XCTAssertEqual(viewModel.viewState, .error, "view state should be error")
     }
 }
 

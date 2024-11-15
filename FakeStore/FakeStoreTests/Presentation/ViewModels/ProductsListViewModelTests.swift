@@ -52,22 +52,19 @@ extension ProductsListViewModelTests {
 }
 
 extension ProductsListViewModelTests {
+
     func test_get_products_success() async {
         let mockUseCase = ProductsListUseCaseMock_success()
         let viewModel = ProductsListViewModel(productsListUseCase: mockUseCase)
-        Task {
-            await viewModel.getProducts()
-            XCTAssertEqual(viewModel.products.count, 1, "Products should be 1.")
-        }
+        await viewModel.getProducts()
+        XCTAssertEqual(viewModel.products.count, 1, "Products should be 1.")
     }
     
     func test_get_products_fail() async {
         let mockUseCase = ProductsListUseCaseMock_fail()
         let viewModel = ProductsListViewModel(productsListUseCase: mockUseCase)
-        Task {
-            await viewModel.getProducts()
-            XCTAssertEqual(viewModel.viewState, .error, "ViewState should be error.")
-        }
+        await viewModel.getProducts()
+        XCTAssertEqual(viewModel.viewState, .error, "ViewState should be error.")
     }
     
     func test_get_products_fail_no_network() async {
@@ -75,10 +72,8 @@ extension ProductsListViewModelTests {
         let repository = ProductWebRepository(reachability: mockNetwork)
         let useCase = FetchProductsListUseCase(productRepository: repository)
         let viewModel = ProductsListViewModel(productsListUseCase: useCase)
-        Task {
-            await viewModel.getProducts()
-            XCTAssertEqual(viewModel.viewState, .error, "ViewState should be error.")
-        }
+        await viewModel.getProducts()
+        XCTAssertEqual(viewModel.errorMessage, "Seems to be you are offline, Check your internet connectivity.")
     }
 }
 

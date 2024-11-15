@@ -20,7 +20,7 @@ final class ViewModelFactoryTests: XCTestCase {
 }
 
 extension ViewModelFactoryTests {
-    @MainActor
+
     func test_viewModelFactory_getProductsListViewModel_instance_UITesting() async {
         let sut = ViewModelFactory(processInfoProvider: MockProcessInfoProvider())
         let viewModel = sut.productListViewModel()
@@ -28,7 +28,6 @@ extension ViewModelFactoryTests {
         XCTAssertEqual(viewModel.products.count, 1, "For UITesting view model instance have only one product")
     }
     
-    @MainActor
     func test_viewModelFactory_getProductsListViewModel_instance_UITesting_noNetwork() async {
         let sut = ViewModelFactory(processInfoProvider: MockProcessInfoProvider_NoNetwork())
         let viewModel = sut.productListViewModel()
@@ -36,7 +35,6 @@ extension ViewModelFactoryTests {
         XCTAssertEqual(viewModel.viewState, .error, "For UITesting no network, view model instance have error state")
     }
     
-    @MainActor
     func test_viewModelFactory_getProductDetailViewModel_instance_UITesting() async {
         let sut = ViewModelFactory(processInfoProvider: MockProcessInfoProvider())
         let viewModel = sut.productDetailViewModel(product: Product.getFakeProduct())
